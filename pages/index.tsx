@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
-import Webcam from "../components/Webcam";
+import Stream from "../components/Stream";
 
 const IndexPage = () => {
   const [streamEnabled, setStreamEnabled] = useState(true);
@@ -14,7 +14,7 @@ const IndexPage = () => {
     <Layout title="Home | Webcam App">
       <div className="m-4 text-center">
         <div className="text-2xl mb-4">Webcam App</div>
-        <Webcam
+        <Stream
           streamEnabled={streamEnabled}
           sepiaFilter={sepiaFilter}
           inputType={inputType}

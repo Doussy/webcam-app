@@ -7,7 +7,7 @@ type ComponentProps = {
   inputType: "webcam" | "screen_share";
 };
 
-const Webcam: React.FC<ComponentProps> = ({
+const Stream: React.FC<ComponentProps> = ({
   streamEnabled,
   sepiaFilter,
   inputType = "screen_share",
@@ -74,4 +74,4 @@ const Webcam: React.FC<ComponentProps> = ({
   );
 };
 
-export default Webcam;
+export default Stream;
