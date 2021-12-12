@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import classNames from "../utils/classNames";
 
 type ComponentProps = {
   streamEnabled: boolean;
@@ -25,6 +26,8 @@ const Webcam: React.FC<ComponentProps> = ({
 
   const disableStream = () => {
     mediaStream && mediaStream.getTracks().forEach((track) => track.stop());
+    let video = videoRef.current;
+    video.srcObject = null;
   };
 
   const setWebcam = () => {
@@ -45,7 +48,7 @@ const Webcam: React.FC<ComponentProps> = ({
   const setScreenShare = () => {
     disableStream();
     navigator.mediaDevices
-      .getDisplayMedia({ video: { width: 1280, height: 720 } })
+      .getDisplayMedia({ video: true })
       .then((stream) => {
         setMediaStream(stream);
         let video = videoRef.current;
@@ -60,9 +63,11 @@ const Webcam: React.FC<ComponentProps> = ({
   return (
     <>
       <video
-        className={`mx-auto w-full md:w-2/3 lg:w-1/2 -scale-x-100 bg-black ${
-          sepiaFilter ? "sepia" : ""
-        }`}
+        className={classNames(
+          "mx-auto w-full md:w-2/3 lg:w-1/2 bg-black aspect-video",
+          sepiaFilter ? "sepia" : "",
+          inputType === "webcam" ? "-scale-x-100" : ""
+        )}
         ref={videoRef}
       />
     </>
